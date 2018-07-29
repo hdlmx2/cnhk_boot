@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <mapping class="store.cnhk.pojo.Reservation"/>
+        <mapping resource="store/cnhk/pojo/Reservation.hbm.xml"/>
+        <mapping class="store.cnhk.pojo.ServiceTimeSection"/>
+        <mapping resource="store/cnhk/pojo/ServiceTimeSection.hbm.xml"/>
+        <mapping resource="store/cnhk/pojo/Cnhkproduct.hbm.xml"/>
+        <mapping class="store.cnhk.pojo.Cnhkproduct"/>
+    </session-factory>
+</hibernate-configuration>

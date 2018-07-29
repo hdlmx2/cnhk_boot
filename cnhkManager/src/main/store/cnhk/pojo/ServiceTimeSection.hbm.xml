@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="store.cnhk.pojo.ServiceTimeSection" table="tb_service_time_section" schema="cnhk">
+        <id name="id" column="Id"/>
+        <property name="serviceTimeSection" column="serviceTimeSection"/>
+        <property name="serviceNumber" column="serviceNumber"/>
+        <property name="timestamp" column="timestamp"/>
+    </class>
+</hibernate-mapping>
