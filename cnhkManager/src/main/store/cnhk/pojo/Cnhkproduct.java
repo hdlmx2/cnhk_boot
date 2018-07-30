@@ -1,10 +1,8 @@
 package store.cnhk.pojo;
 
-import javax.persistence.*;
 import java.sql.Timestamp;
 
-@Entity
-@Table(name = "tb_cnhkproduct", schema = "store/cnhk", catalog = "")
+
 public class Cnhkproduct {
     private String id;
     private String serviceName;
@@ -12,8 +10,7 @@ public class Cnhkproduct {
     private String serviceDesc;
     private Timestamp timestamp;
 
-    @Id
-    @Column(name = "Id")
+
     public String getId() {
         return id;
     }
@@ -22,8 +19,7 @@ public class Cnhkproduct {
         this.id = id;
     }
 
-    @Basic
-    @Column(name = "serviceName")
+
     public String getServiceName() {
         return serviceName;
     }
@@ -32,8 +28,7 @@ public class Cnhkproduct {
         this.serviceName = serviceName;
     }
 
-    @Basic
-    @Column(name = "servicePrice")
+
     public double getServicePrice() {
         return servicePrice;
     }
@@ -42,8 +37,7 @@ public class Cnhkproduct {
         this.servicePrice = servicePrice;
     }
 
-    @Basic
-    @Column(name = "serviceDesc")
+
     public String getServiceDesc() {
         return serviceDesc;
     }
@@ -52,8 +46,7 @@ public class Cnhkproduct {
         this.serviceDesc = serviceDesc;
     }
 
-    @Basic
-    @Column(name = "timestamp")
+
     public Timestamp getTimestamp() {
         return timestamp;
     }

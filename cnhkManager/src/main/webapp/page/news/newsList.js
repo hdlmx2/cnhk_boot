@@ -26,11 +26,11 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl'], function () {
             {field: 'reservationDate', title: '预约日期', align: 'center'},
             {field: 'serviceTimeSection', title: '预约时间段', align: 'center'},
             {field: 'serviceId', title: '服务项目', align: 'center'},
-            {
+            /*{
                 field: 'isArrivalsStore', title: '是否到店', align: 'center', templet: function (d) {
-                    return '<input type="checkbox" name="newsTop" lay-filter="newsTop" lay-skin="switch" lay-text="是|否" ' + d.isArrivalsStore + '>'
+                    return '<input type="checkbox" name="newsTop" lay-filter="newsTop" lay-skin="switch" lay-text="是|否" >'
                 }
-            },
+            },*/
             {
                 field: 'optionTime', title: '操作时间', align: 'center', minWidth: 110, templet: function (d) {
                     return d.optionTime.substring(0, 10);
@@ -46,6 +46,7 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl'], function () {
         setTimeout(function () {
             layer.close(index);
             if (data.elem.checked) {
+                layer.confirm();
                 layer.msg("到店成功！");
             } else {
                 layer.msg("取消到店！");
@@ -75,7 +76,7 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl'], function () {
     //添加文章
     function addNews(edit) {
         var index = layui.layer.open({
-            title: "添加文章",
+            title: "修改预约",
             type: 2,
             content: "newsAdd.html",
             success: function (layero, index) {
