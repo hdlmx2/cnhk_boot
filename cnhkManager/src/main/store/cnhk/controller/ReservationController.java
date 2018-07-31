@@ -1,32 +1,27 @@
 package store.cnhk.controller;
 
-import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import store.cnhk.pojo.Cnhkproduct;
+import org.springframework.web.bind.annotation.*;
 import store.cnhk.pojo.Reservation;
 import store.cnhk.pojo.ServiceTimeSection;
 import store.cnhk.service.ReservationService;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.*;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
 
 @Controller
-
 public class ReservationController {
     @Autowired
     public ReservationService reservationService;
 
     @RequestMapping("/reservation")
-    public void list(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        String userName = request.getParameter("userName");
-        String phoneNumber = request.getParameter("phoneNumber");
-        String reservationDateString = request.getParameter("reservationDate");
+    @ResponseBody
+    public Map<String, Object> list(@RequestParam("userName") String userName, @RequestParam("phoneNumber") String phoneNumber,
+                                    @RequestParam("reservationDate") String reservationDateString) {
         List<Reservation> list = reservationService.list(userName, phoneNumber, reservationDateString);
         Map<String, Object> result = new HashMap<>();
         List<Map<String, Object>> reservations = new LinkedList<>();
@@ -45,61 +40,32 @@ public class ReservationController {
             reservations.add(temp);
             i++;
         }
-
         result.put("code", "0");
         result.put("msg", "");
         result.put("count", list.size());
         result.put("data", reservations);
-        response.setContentType("application/json");
-        response.setHeader("Pragma", "No-cache");
-        response.setHeader("Cache-Control", "no-cache");
-        response.setCharacterEncoding("UTF-8");
-        Gson gson = new Gson();
-        PrintWriter out = null;
-        out = response.getWriter();
-        out.print(gson.toJson(result));
-        out.flush();
-        out.close();
+        return result;
     }
 
-    @RequestMapping("reservationAdd")
-    public void add(HttpServletRequest request) {
+    @RequestMapping(value = "reservationAdd", method = {RequestMethod.POST})
+    public void add(@RequestBody Reservation reservation) {
         ServiceTimeSection serviceTimeSection = new ServiceTimeSection();
-        Cnhkproduct cnhkproduct = new Cnhkproduct();
-        Date date = new Date();
-        java.sql.Date date1 = new java.sql.Date(date.getTime());
-        serviceTimeSection.setId(2);
-        cnhkproduct.setId("001");
-        Reservation reservation = new Reservation();
-        reservation.setId(1002);
-        reservation.setUserName("穆昕");
-        reservation.setPhoneNumber("18851401673");
         reservation.setServiceTimeSection(serviceTimeSection);
-        reservation.setCnhkproduct(cnhkproduct);
-        reservation.setReservationDate(date1);
         reservationService.add(reservation);
     }
 
     @RequestMapping("reservationUpdate")
-    public void update(@RequestBody Reservation reservation) {
+    public void update(@RequestBody Reservation reservation, @RequestParam String cnhkProduct, @RequestParam int serviceTimeSection) {
         reservationService.update(reservation);
 
     }
 
     @RequestMapping("reservationGet")
-    public void getById(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        Integer id = Integer.parseInt(request.getParameter("id").toString());
+    @ResponseBody
+    public Reservation getById(@RequestParam("id") int id) throws IOException {
         Reservation reservation = reservationService.getById(id);
-        response.setContentType("application/json");
-        response.setHeader("Pragma", "No-cache");
-        response.setHeader("Cache-Control", "no-cache");
-        response.setCharacterEncoding("UTF-8");
-        Gson gson = new Gson();
-        PrintWriter out = null;
-        out = response.getWriter();
-        out.print(gson.toJson(reservation));
-        out.flush();
-        out.close();
+        return reservation;
+
     }
 
     @RequestMapping("reservationDelete")
