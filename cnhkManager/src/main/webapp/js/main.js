@@ -19,8 +19,8 @@ function getLangDate(){
     var second = dateObj.getSeconds(); //当前系统时间的秒钟值
     var timeValue = "" +((hour >= 12) ? (hour >= 18) ? "晚上" : "下午" : "上午" ); //当前时间属于上午、晚上还是下午
     newDate = dateFilter(year)+"年"+dateFilter(month)+"月"+dateFilter(date)+"日 "+" "+dateFilter(hour)+":"+dateFilter(minute)+":"+dateFilter(second);
-    document.getElementById("nowTime").innerHTML = "亲爱的韩东，"+timeValue+"好！ 欢迎使用春暖花门店管理系统。当前时间为： "+newDate+"　"+week;
-    setTimeout("getLangDate()",1000);
+    document.getElementById("nowTime").innerHTML = "亲爱的邓云，"+timeValue+"好！ 欢迎使用春暖花门店管理系统。当前时间为： "+newDate+"　"+week;
+    setTimeout("getLangDate()",500);
 }
 
 layui.use(['form','element','layer','jquery'],function(){
@@ -89,10 +89,30 @@ layui.use(['form','element','layer','jquery'],function(){
     $.get("../json/userList.json",function(data){
         $(".userAll span").text(data.count);
     })
+//获取当前时间，格式YYYY-MM-DD
+    function getNowFormatDate() {
+        var date = new Date();
+        var seperator1 = "-";
+        var year = date.getFullYear();
+        var month = date.getMonth() + 1;
+        var strDate = date.getDate();
+        if (month >= 1 && month <= 9) {
+            month = "0" + month;
+        }
+        if (strDate >= 0 && strDate <= 9) {
+            strDate = "0" + strDate;
+        }
+        var currentdate = year + seperator1 + month + seperator1 + strDate;
+        return currentdate;
+    }
 
-    //外部图标
-    $.get(iconUrl,function(data){
-        $(".outIcons span").text(data.split(".icon-").length-1);
+    $.ajax({
+        url:"/cnhkManager/reservation",
+        data:{
+            "reservationDate":getNowFormatDate()
+        },
+        success:function(data){
+            $(".outIcons span").text(data.count);
+        }
     })
-
 })

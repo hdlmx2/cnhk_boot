@@ -980,6 +980,7 @@
       <Position>1</Position>
       <DataType>int(10)|0s</DataType>
       <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
     <column id="244" parent="232" name="userName">
@@ -1015,11 +1016,13 @@
     <column id="249" parent="232" name="isArrivalsStore">
       <Position>7</Position>
       <DataType>smallint(1)|0s</DataType>
+      <DefaultExpression>&apos;0&apos;</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
     <column id="250" parent="232" name="optionTime">
       <Position>8</Position>
       <DataType>timestamp|0s</DataType>
+      <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
       <ColumnKind>normal</ColumnKind>
     </column>
     <index id="251" parent="232" name="reservationTimeId">

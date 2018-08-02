@@ -827,7 +827,7 @@ a cite {
 }
 
 .layui-layout-admin .layui-header {
-    background-color: #313e3e
+    background-color: #f0f3f5
 }
 
 .layui-layout-admin .layui-side {
@@ -1685,6 +1685,17 @@ a cite {
 .layui-bg-cyan {
     background-color: #2F4056 !important
 }
+
+.layui-bg-reservation {
+    background-color: #46b39e !important
+}
+.layui-bg-user {
+    background-color: #fadc22 !important
+}
+.layui-bg-logo {
+    background-color: #297fb8 !important
+}
+
 /*春暖花主题色*/
 .layui-bg-cnhkbg {
     background-color: #e6eaed !important
@@ -3439,7 +3450,7 @@ body .layui-table-tips .layui-layer-content {
 }
 
 .layui-nav-tree .layui-nav-item a:hover {
-    background-color: #4E5465
+    background-color: #596065
 }
 
 .layui-nav-tree .layui-nav-bar {

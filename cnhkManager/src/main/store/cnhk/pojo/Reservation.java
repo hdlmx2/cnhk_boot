@@ -10,9 +10,9 @@ public class Reservation {
     private String phoneNumber;
     private Date reservationDate;
     private Short isArrivalsStore;
-    private Timestamp optionTime;
+    private Timestamp operateTime;
     private ServiceTimeSection serviceTimeSection;
-    private Cnhkproduct cnhkproduct;
+    private CnhkProduct cnhkproduct;
 
     public int getId() {
         return id;
@@ -59,12 +59,12 @@ public class Reservation {
     }
 
 
-    public Timestamp getOptionTime() {
-        return optionTime;
+    public Timestamp getOperateTime() {
+        return operateTime;
     }
 
-    public void setOptionTime(Timestamp optionTime) {
-        this.optionTime = optionTime;
+    public void setOperateTime(Timestamp operateTime) {
+        this.operateTime = operateTime;
     }
 
     public ServiceTimeSection getServiceTimeSection() {
@@ -75,11 +75,11 @@ public class Reservation {
         this.serviceTimeSection = serviceTimeSection;
     }
 
-    public Cnhkproduct getCnhkproduct() {
+    public CnhkProduct getCnhkproduct() {
         return cnhkproduct;
     }
 
-    public void setCnhkproduct(Cnhkproduct cnhkproduct) {
+    public void setCnhkproduct(CnhkProduct cnhkproduct) {
         this.cnhkproduct = cnhkproduct;
     }
 
@@ -97,7 +97,7 @@ public class Reservation {
             return false;
         if (isArrivalsStore != null ? !isArrivalsStore.equals(that.isArrivalsStore) : that.isArrivalsStore != null)
             return false;
-        if (optionTime != null ? !optionTime.equals(that.optionTime) : that.optionTime != null) return false;
+        if (operateTime != null ? !operateTime.equals(that.operateTime) : that.operateTime != null) return false;
 
         return true;
     }
@@ -109,7 +109,7 @@ public class Reservation {
         result = 31 * result + (phoneNumber != null ? phoneNumber.hashCode() : 0);
         result = 31 * result + (reservationDate != null ? reservationDate.hashCode() : 0);
         result = 31 * result + (isArrivalsStore != null ? isArrivalsStore.hashCode() : 0);
-        result = 31 * result + (optionTime != null ? optionTime.hashCode() : 0);
+        result = 31 * result + (operateTime != null ? operateTime.hashCode() : 0);
         return result;
     }
 }

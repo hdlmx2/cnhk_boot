@@ -10,6 +10,7 @@ import store.cnhk.utils.DateUtils;
 
 import java.sql.Date;
 import java.util.List;
+import java.util.Map;
 
 @Service
 
@@ -36,15 +37,23 @@ public class ReservationServiceImp implements ReservationService {
     }
 
     @Override
+    @Transactional
     public void update(Reservation reservation) {
         reservationDao.update(reservation);
     }
 
 
     @Override
+    @Transactional
     public void delete(Reservation reservation) {
         reservationDao.delete(reservation);
 
     }
+
+    @Override
+    public List<Map<String, Object>> reservationServiceTimeSectionCount(Date reservationDate) {
+        return null;
+    }
+
 
 }

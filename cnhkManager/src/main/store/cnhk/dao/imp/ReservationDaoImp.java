@@ -12,6 +12,7 @@ import store.cnhk.pojo.Reservation;
 
 import java.sql.Date;
 import java.util.List;
+import java.util.Map;
 
 @Repository
 @Component
@@ -19,10 +20,6 @@ public class ReservationDaoImp implements ReservationDao {
     @Autowired
     protected SessionFactory sessionFactory;
 
-    /*protected Session getSession() {
-        return sessionFactory.getCurrentSession();
-    }
-*/
     @Override
     public List<Reservation> list(String userName, String phoneNumber, Date reservationDate) {
 
@@ -36,10 +33,8 @@ public class ReservationDaoImp implements ReservationDao {
         if (reservationDate != null) {
             hql.append(" and r.reservationDate=:reservationDate");
         }
-
+        hql.append(" order by r.reservationDate desc,r.operateTime desc");
         Session session = sessionFactory.getCurrentSession();
-
-
         Query query = session.createQuery(hql.toString());
 
         if (!StringUtils.isEmpty(userName)) {
@@ -73,13 +68,29 @@ public class ReservationDaoImp implements ReservationDao {
 
     @Override
     public void delete(Reservation reservation) {
-        sessionFactory.getCurrentSession().delete(reservation);
+        Session session = sessionFactory.getCurrentSession();
+        session.delete(reservation);
+        session.flush();
+
 
     }
 
     @Override
     public void update(Reservation reservation) {
-        sessionFactory.getCurrentSession().update(reservation);
+        Session session = sessionFactory.getCurrentSession();
+        session.update(reservation);
+        session.flush();
+
+    }
+
+    @Override
+    public List<Map<String, Object>> reservationServiceTimeSectionCount(Date reservationDate) {
+        Session session = sessionFactory.getCurrentSession();
+        String hql = "select count(r.id) from Reservation r where r.reservationDate=:reservationDate group by r.serviceTimeSection order by r.serviceTimeSection";
+        Query query = session.createQuery(hql);
+        query.setParameter("reservationDate", reservationDate);
+        List<Map<String, Object>> reservationCount = query.list();
+        return reservationCount;
 
     }
 

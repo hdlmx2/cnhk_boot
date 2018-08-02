@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>预约列表</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="stylesheet" href="../../layui/css/layui.css" media="all"/>
+    <link rel="stylesheet" href="../../css/public.css" media="all"/>
+    <link rel="stylesheet" href="../../css/reservation/reservation.css"/>
+</head>
+<body class="childrenBody">
+<form class="layui-form layui-row layui-col-space10">
+    <input type="hidden" id="reservationId" value="">
+    <div class="layui-col-md9 layui-col-xs12">
+        <div class="layui-row layui-col-space10">
+            <div class="layui-col-md9 layui-col-xs7">
+                <div class="layui-form-item magt3">
+                    <label class="layui-form-label">姓名</label>
+                    <div class="layui-input-block">
+                        <input id="userName" name="userName" style="width: 30%" type="text" class="layui-input newsName"
+                               lay-verify="userName"
+                               placeholder="请输入预约人的姓名">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">手机</label>
+                    <div class="layui-input-block">
+                        <input id="phoneNumber" style="width: 30%" type="tel" name="phoneNumber"
+                               placeholder="请输入预约人手机号码"
+                               lay-verify="required|phone" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">服务项目</label>
+                    <div class="layui-input-block selectWidth">
+                        <select class="selectWidth" id="cnhkProduct" name="cnhkProduct"
+                                lay-verify="cnhkProductId"
+                                placeholder="请选择服务项目">
+                            <option value="0">请选择服务项目</option>
+                            <option value="001">开奶</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">预约日期</label>
+                    <div class="layui-input-block">
+                        <input style="width: 30%;" id="reservationDate" name="reservationDate" type="text"
+                               lay-verify="reservationDate"
+                               class="layui-input searchVal"
+                               placeholder="预约日期"/>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">服务时间段</label>
+                    <div class="layui-input-block layui-form selectWidth">
+                        <select id="serviceTimeSection" name="serviceTimeSection"
+                                lay-verify="serviceTimeSection"
+                                placeholder="请选择时间段">
+                            <option value="0">请选择时间段</option>
+                            <option value="1">9:00-11:00</option>
+                            <option value="2">11:00-13:00</option>
+                            <option value="3">13:00-15:00</option>
+                            <option value="4">16:00-18:00</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr class="layui-bg-gray"/>
+    <div class="layui-center">
+
+        <button class="layui-btn layui-btn-sm layui-icon" lay-submit lay-filter="reservationUpdate">立即提交</button>
+
+    </div>
+    </div>
+    </div>
+</form>
+
+<script type="text/javascript" src="../../layui/layui.js"></script>
+<script type="text/javascript" src="reservationEdit.js"></script>
+<script>
+    layui.use('laydate', function () {
+        var laydate = layui.laydate;
+        laydate.render({
+            elem: '#reservationDate'
+            , theme: '#5fb878'
+            , min: 0
+            , value: new Date()
+            , max: 30
+        });
+    })
+</script>
+</body>
+</html>
