@@ -11,7 +11,7 @@
         <property name="reservationDate" column="reservationDate"/>
         <property name="isArrivalsStore" column="isArrivalsStore" insert="false" update="false"/>
         <property name="operateTime" column="optionTime" insert="false" update="false"/>
-        <many-to-one name="serviceTimeSection" column="reservationTimeId" foreign-key="reservationTimeId"/>
-        <many-to-one name="cnhkproduct" column="serviceId" foreign-key="serviceId"/>
+        <many-to-one name="serviceTimeSection" column="reservationTimeId" foreign-key="reservationTimeId" lazy="false"/>
+        <many-to-one name="cnhkproduct" column="serviceId" foreign-key="serviceId" lazy="false"/>
     </class>
 </hibernate-mapping>

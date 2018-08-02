@@ -50,10 +50,10 @@ public class ReservationServiceImp implements ReservationService {
 
     }
 
+    @Transactional
     @Override
     public List<Map<String, Object>> reservationServiceTimeSectionCount(Date reservationDate) {
-        return null;
+        return reservationDao.reservationServiceTimeSectionCount(reservationDate);
+
     }
-
-
 }

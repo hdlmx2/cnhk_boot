@@ -16,7 +16,7 @@ public interface ReservationDao {
     void delete(Reservation reservation);
 
     void update(Reservation reservation);
-    List<Map<String,Object>> reservationServiceTimeSectionCount(Date ReservationDate);
+    List<Map<String,Object>>  reservationServiceTimeSectionCount(Date ReservationDate);
 
 
 }
