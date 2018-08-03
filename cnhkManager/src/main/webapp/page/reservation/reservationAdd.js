@@ -38,16 +38,10 @@ layui.use(['form', 'layer', 'layedit', 'laydate', 'upload'], function () {
         }
 
     })
-    form.on("submit(addNews)", function (data) {
-        /*$.post("/cnhkManager/reservationAdd", {
-            userName: $("#userName").val(),  //文章标题
-            phoneNumber: $("#phoneNumber").val(),  //文章摘要
-            cnhkProduct: $("#cnhkProduct").val(),//文章内容
-            reservationDate: $('#reservationDate').val(),    //发布状态
-            /!*serviceTimeSection: $('#serviceTimeSection').val(),    //发布时间*!/
-        }, function (res) {
 
-        })*/
+
+
+    form.on("submit(addReservation)", function (data) {
         $.ajax({
             url: '/cnhkManager/reservationAdd',
             data: {
@@ -55,7 +49,7 @@ layui.use(['form', 'layer', 'layedit', 'laydate', 'upload'], function () {
                 "phoneNumber": $("#phoneNumber").val(),
                 "cnhkProductId": $("#cnhkProduct").val(),
                 "reservationDate": $('#reservationDate').val(),
-                "serviceTimeSectionId": $('#serviceTimeSection').val()
+                "serviceTimeSectionId": $('#serviceTimeSectionAdd').val()
             },
             /*dataType: 'json',*/
             type: 'POST',

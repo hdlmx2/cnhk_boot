@@ -34,15 +34,6 @@ layui.use(['form', 'layer', 'layedit', 'laydate', 'upload'], function () {
 
     })
     form.on("submit(reservationUpdate)", function (data) {
-        /*$.post("/cnhkManager/reservationAdd", {
-            userName: $("#userName").val(),  //文章标题
-            phoneNumber: $("#phoneNumber").val(),  //文章摘要
-            cnhkProduct: $("#cnhkProduct").val(),//文章内容
-            reservationDate: $('#reservationDate').val(),    //发布状态
-            /!*serviceTimeSection: $('#serviceTimeSection').val(),    //发布时间*!/
-        }, function (res) {
-
-        })*/
         $.ajax({
             url: '/cnhkManager/reservationUpdate',
             data: {
@@ -53,11 +44,9 @@ layui.use(['form', 'layer', 'layedit', 'laydate', 'upload'], function () {
                 "reservationDate": $('#reservationDate').val(),
                 "serviceTimeSectionId": $('#serviceTimeSection').val()
             },
-            /*dataType: 'json',*/
             type: 'POST',
             async: false,
             cache: false,
-            /* contentType: "application/json",*/
             success: function (data) {
                 /*top.layer.close(index);*/
                 top.layer.msg("修改成功！");

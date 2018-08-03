@@ -11,7 +11,6 @@ import store.cnhk.pojo.ServiceTimeSection;
 import store.cnhk.service.ReservationService;
 import store.cnhk.utils.DateUtils;
 
-import java.io.IOException;
 import java.sql.Date;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -58,8 +57,10 @@ public class ReservationController {
 
     @RequestMapping(value = "reservationAdd", method = {RequestMethod.POST})
     @ResponseBody
-    public Map<String, Boolean> add(@RequestParam("userName") String userName, @RequestParam("phoneNumber") String phoneNumber,
-                                    @RequestParam("cnhkProductId") String cnhkProductId, @RequestParam("serviceTimeSectionId") String serviceTimeSectionId,
+    public Map<String, Boolean> add(@RequestParam("userName") String userName,
+                                    @RequestParam("phoneNumber") String phoneNumber,
+                                    @RequestParam("cnhkProductId") String cnhkProductId,
+                                    @RequestParam("serviceTimeSectionId") String serviceTimeSectionId,
                                     @RequestParam("reservationDate") String reservationDateString) {
         Reservation reservation = new Reservation();
         ServiceTimeSection serviceTimeSection = new ServiceTimeSection();
@@ -87,7 +88,11 @@ public class ReservationController {
 
     @RequestMapping("reservationUpdate")
     @ResponseBody
-    public Map<String, Boolean> update(int id, String userName, String phoneNumber, Date reservationDate, String cnhkProductId, int serviceTimeSectionId) {
+    public Map<String, Boolean> update(int id, String userName,
+                                       String phoneNumber,
+                                       Date reservationDate,
+                                       String cnhkProductId,
+                                       int serviceTimeSectionId) {
         Reservation reservation = new Reservation();
         ServiceTimeSection serviceTimeSection = new ServiceTimeSection();
         serviceTimeSection.setId(serviceTimeSectionId);
@@ -114,7 +119,7 @@ public class ReservationController {
 
     @RequestMapping("reservationGet")
     @ResponseBody
-    public Reservation getById(@RequestParam("id") int id) throws IOException {
+    public Reservation getById(@RequestParam("id") int id) {
         Reservation reservation = reservationService.getById(id);
         return reservation;
 
@@ -138,8 +143,7 @@ public class ReservationController {
 
     @ResponseBody
     @RequestMapping("serviceTimeSectionCount")
-    public List<Map<String, Integer>> reservationServiceTimeSectionCount(Date reservationDate) {
-        List<Map<String, Integer>> count = new LinkedList<>();
-        return count;
+    public List<Map<String, Object>> reservationServiceTimeSectionCount(Date reservationDate) {
+        return reservationService.reservationServiceTimeSectionCount(reservationDate);
     }
 }

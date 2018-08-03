@@ -26,5 +26,5 @@ public class TestResearvationDao {
         java.sql.Date date2 = new java.sql.Date(data.getTime());
         List<Map<String, Object>> result = service.reservationServiceTimeSectionCount(date2);
         System.out.println(result);
-7    }
+    }
 }

@@ -47,7 +47,6 @@ public class ReservationDaoImp implements ReservationDao {
             query.setParameter("reservationDate", reservationDate);
         }
         List<Reservation> result = query.list();
-
         return result;
     }
 
@@ -62,8 +61,6 @@ public class ReservationDaoImp implements ReservationDao {
         Session session = sessionFactory.getCurrentSession();
         session.save(reservation);
         session.flush();
-
-
     }
 
     @Override
@@ -71,8 +68,6 @@ public class ReservationDaoImp implements ReservationDao {
         Session session = sessionFactory.getCurrentSession();
         session.delete(reservation);
         session.flush();
-
-
     }
 
     @Override
@@ -80,18 +75,16 @@ public class ReservationDaoImp implements ReservationDao {
         Session session = sessionFactory.getCurrentSession();
         session.update(reservation);
         session.flush();
-
     }
 
     @Override
-    public List<Map<String,Object>> reservationServiceTimeSectionCount(Date reservationDate) {
+    public List<Map<String, Object>> reservationServiceTimeSectionCount(Date reservationDate) {
         Session session = sessionFactory.getCurrentSession();
         String hql = "select new Map(r.serviceTimeSection as serviceTimeSection, count(r.id) as count) from Reservation r,ServiceTimeSection s where r.serviceTimeSection=s.id and  r.reservationDate=:reservationDate group by r.serviceTimeSection order by r.serviceTimeSection";
         Query query = session.createQuery(hql);
         query.setParameter("reservationDate", reservationDate);
-        List<Map<String,Object>> reservationCount = query.list();
+        List<Map<String, Object>> reservationCount = query.list();
         return reservationCount;
-
     }
 
 }

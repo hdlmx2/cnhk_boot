@@ -5,10 +5,13 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import store.cnhk.dao.ReservationDao;
 import store.cnhk.pojo.Reservation;
+import store.cnhk.pojo.ServiceTimeSection;
 import store.cnhk.service.ReservationService;
 import store.cnhk.utils.DateUtils;
 
 import java.sql.Date;
+import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -53,7 +56,19 @@ public class ReservationServiceImp implements ReservationService {
     @Transactional
     @Override
     public List<Map<String, Object>> reservationServiceTimeSectionCount(Date reservationDate) {
-        return reservationDao.reservationServiceTimeSectionCount(reservationDate);
+        List<Map<String, Object>> result = reservationDao.reservationServiceTimeSectionCount(reservationDate);
+        List<Map<String, Object>> data = new LinkedList<>();
+        if (result != null && result.size() > 0) {
+            for (Map reservationCount : result) {
+                ServiceTimeSection time = (ServiceTimeSection) reservationCount.get("serviceTimeSection");
+                Long count = (Long) reservationCount.get("count");
+                Map<String, Object> temp = new HashMap<>();
+                temp.put("count", count);
+                temp.put("time", time.getId());
+                data.add(temp);
+            }
 
+        }
+        return data;
     }
 }
