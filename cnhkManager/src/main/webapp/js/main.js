@@ -73,7 +73,7 @@ layui.use(['form','element','layer','jquery'],function(){
     }
 
     //最新文章列表
-    $.get("../json/newsList.json",function(data){
+    /*$.get("../json/newsList.json",function(data){
         var hotNewsHtml = '';
         for(var i=0;i<5;i++){
             hotNewsHtml += '<tr>'
@@ -84,7 +84,7 @@ layui.use(['form','element','layer','jquery'],function(){
         $(".hot_news").html(hotNewsHtml);
         $(".userAll span").text(data.length);
     })
-
+*/
     //用户数量
     $.get("../json/userList.json",function(data){
         $(".userAll span").text(data.count);

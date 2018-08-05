@@ -79,7 +79,6 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl'], function () {
     });
 
 
-
     //添加预约
     function addNews(edit) {
         var index = layui.layer.open({
@@ -87,11 +86,11 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl'], function () {
             type: 2,
             content: "reservationAdd.html",
             success: function (layero, index) {
-                    setTimeout(function () {
-                        layui.layer.tips('点击此处返回预约列表', '.layui-layer-setwin .layui-layer-close', {
-                            tips: 3
-                        });
-                    }, 100)
+                setTimeout(function () {
+                    layui.layer.tips('点击此处返回预约列表', '.layui-layer-setwin .layui-layer-close', {
+                        tips: 3
+                    });
+                }, 100)
             }
         })
         layui.layer.full(index);
@@ -124,7 +123,7 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl'], function () {
                     /*var timedd = 'dd[lay-value=' + data.serviceTimeSectionId + ']';*/
                     var productdd = 'dd[lay-value=' + data.cnhkProductId + ']';
                     body.find('#cnhkProduct').siblings("div.layui-form-select").find('dl').find(productdd).click();
-                    b/*ody.find('#serviceTimeSection').siblings("div.layui-form-select").find('dl').find(timedd).click();*/
+                    /* body.find('#serviceTimeSection').siblings("div.layui-form-select").find('dl').find(timedd).click();*/
                     /*form.render();*/
 
                 }

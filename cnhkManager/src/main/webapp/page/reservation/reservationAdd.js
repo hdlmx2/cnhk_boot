@@ -13,8 +13,8 @@ layui.use(['form', 'layer', 'layedit', 'laydate', 'upload'], function () {
         {"value": "3", "text": "13:00-15:00"},
         {"value": "4", "text": "16:00-18:00"}
     ]
+    getCnhkProduct();
     getReservationCount();
-
     form.verify({
         userName: function (val) {
             if (val == '') {
@@ -90,7 +90,22 @@ layui.use(['form', 'layer', 'layedit', 'laydate', 'upload'], function () {
         }, 500);
         return false;
     })
-
+    function getCnhkProduct() {
+        $.ajax({
+            url: "/cnhkManager/cnhkProduct",
+            success: function (data) {
+                if (data != undefined) {
+                    var html;
+                    for (var i = 0; i < data.length; i++) {
+                        var optionHtml = "<option value='" + data[i].id + "'>" + data[i].serviceName + "</option>>"
+                        html += optionHtml;
+                    }
+                    $("#cnhkProduct").append(html)
+                    form.render();
+                }
+            }
+        })
+    }
     function getReservationCount() {
         $.ajax({
             url: '/cnhkManager/serviceTimeSectionCount',
@@ -137,6 +152,7 @@ layui.use(['form', 'layer', 'layedit', 'laydate', 'upload'], function () {
     }
 
 })
+
 //获取当前时间，格式YYYY-MM-DD
 function getNowFormatDate() {
     var date = new Date();
@@ -153,4 +169,6 @@ function getNowFormatDate() {
     var currentdate = year + seperator1 + month + seperator1 + strDate;
     return currentdate;
 }
+
+
 
