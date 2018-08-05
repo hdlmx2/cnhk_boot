@@ -1,3 +1,23 @@
-.selectWidth{
+.selectDivWidth{
     width: 25%;
+    border-color: red;
+}
+.refresh{
+    float: left;
+    margin-top: -38px;
+    margin-left: 100px;
+    width: 200px;
+    height: 100px;
+    border:1px red;
+}
+.refresh2{
+    float: left;
+    margin-top: -38px;
+    margin-left: 168px;
+    width: 200px;
+    height: 100px;
+    border:1px red;
+}
+.selectInputWidth{
+    width: 50%;
 }

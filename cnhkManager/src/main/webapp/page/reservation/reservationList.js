@@ -78,22 +78,7 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl'], function () {
         }
     });
 
-//获取当前时间，格式YYYY-MM-DD
-    function getNowFormatDate() {
-        var date = new Date();
-        var seperator1 = "-";
-        var year = date.getFullYear();
-        var month = date.getMonth() + 1;
-        var strDate = date.getDate();
-        if (month >= 1 && month <= 9) {
-            month = "0" + month;
-        }
-        if (strDate >= 0 && strDate <= 9) {
-            strDate = "0" + strDate;
-        }
-        var currentdate = year + seperator1 + month + seperator1 + strDate;
-        return currentdate;
-    }
+
 
     //添加预约
     function addNews(edit) {
@@ -102,51 +87,11 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl'], function () {
             type: 2,
             content: "reservationAdd.html",
             success: function (layero, index) {
-                var body = layui.layer.getChildFrame('body', index);
-                $.ajax({
-                    url: '/cnhkManager/serviceTimeSectionCount',
-                    data: {
-                        "reservationDate": getNowFormatDate()
-                    },
-                    success: function (data) {
-                        var html = "<option value='0'>请选择时间段</option>";
-                        for (var i = 1; i < servationTime.length; i++) {
-                            var optionHtml = "<option value='" + servationTime[i].value + "' "
-                            var flag = false;
-                            //遍历已经预约的统计
-                            for (var j = 0; j < data.length; j++) {
-                                //半判断当前的option与统计的option是否一致
-                                if (servationTime[i].value == data[j].serviceTimeSection) {
-                                    flag = true;
-                                    var count = data.count;
-                                    if (count >= 2) {
-                                        //预定已满
-                                        optionHtml += " disable>" + servationTime[i].text + "（已满）</option>"
-                                    } else if (count == 1) {
-                                        optionHtml += ">" + servationTime[i].text + "（剩余1位）</option>"
-
-                                    } else {
-                                        optionHtml += ">" + servationTime[i].text + "（剩余2位）</option>"
-                                    }
-                                    break;
-                                }
-                            }
-                            if (flag == false) {
-                                optionHtml += ">" + servationTime[i].text + "（剩余2位）</option>"
-                            }
-                            html += optionHtml;
-                        }
-
-                        body.find("#serviceTimeSectionAdd").append(html);
-                        form.render();
-
-                    }
-                }),
                     setTimeout(function () {
                         layui.layer.tips('点击此处返回预约列表', '.layui-layer-setwin .layui-layer-close', {
                             tips: 3
                         });
-                    }, 500)
+                    }, 100)
             }
         })
         layui.layer.full(index);
@@ -176,12 +121,11 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl'], function () {
                     body.find("#phoneNumber").val(data.phoneNumber);
                     body.find("#reservationDate").val(data.reservationDate);
                     body.find("#serviceTimeSection").val(data.serviceTimeSectionId);
-                    var timedd = 'dd[lay-value=' + data.serviceTimeSectionId + ']';
+                    /*var timedd = 'dd[lay-value=' + data.serviceTimeSectionId + ']';*/
                     var productdd = 'dd[lay-value=' + data.cnhkProductId + ']';
                     body.find('#cnhkProduct').siblings("div.layui-form-select").find('dl').find(productdd).click();
-                    body.find('#serviceTimeSection').siblings("div.layui-form-select").find('dl').find(timedd).click();
-                    form.render();
-                    form.render();
+                    b/*ody.find('#serviceTimeSection').siblings("div.layui-form-select").find('dl').find(timedd).click();*/
+                    /*form.render();*/
 
                 }
                 setTimeout(function () {

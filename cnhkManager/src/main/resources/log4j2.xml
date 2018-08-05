@@ -1,6 +1,6 @@
 <Configuration status="WARN" monitorInterval="300">
     <properties>
-        <property name="LOG_HOME">D:/Java/logs</property>
+        <property name="LOG_HOME">/home/</property>
         <property name="FILE_NAME">mylog</property>
     </properties>
     <Appenders>

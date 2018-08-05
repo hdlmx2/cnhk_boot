@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="utf-8">
     <title>添加预约--春暖花开门店管理系统</title>
@@ -12,12 +12,13 @@
     <link rel="stylesheet" href="../../layui/css/layui.css" media="all"/>
     <link rel="stylesheet" href="../../css/public.css" media="all"/>
     <link rel="stylesheet" href="../../css/reservation/reservation.css"/>
+
 </head>
 <body class="childrenBody">
-<form class="layui-form layui-row layui-col-space10">
-    <div class="layui-col-md9 layui-col-xs12">
+<form class="layui-form layui-row layui-center layui-col-space10">
+    <div class="layui-col-md9 layui-center layui-col-xs12">
         <div class="layui-row layui-col-space10">
-            <div class="layui-col-md9 layui-col-xs7">
+            <div class="layui-col-md9 layui-center layui-col-xs7">
                 <div class="layui-form-item magt3">
                     <label class="layui-form-label">姓名</label>
                     <div class="layui-input-block">
@@ -36,8 +37,8 @@
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label">服务项目</label>
-                    <div class="layui-input-block selectWidth">
-                        <select class="selectWidth" id="cnhkProduct" name="cnhkProduct"
+                    <div class="layui-input-block selectDivWidth">
+                        <select class="selectDivWidth" id="cnhkProduct" name="cnhkProduct"
                                 lay-verify="cnhkProductId"
                                 placeholder="请选择服务项目">
                             <option value="0">请选择服务项目</option>
@@ -59,33 +60,29 @@
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label">服务时间段</label>
-                    <div class="layui-input-block selectWidth">
-                        <select id="serviceTimeSectionAdd" name="serviceTimeSection"
+                    <div class="layui-input-block selectDivWidth">
+                        <select class="selectInputWidth" id="serviceTimeSection" name="serviceTimeSection"
                                 lay-verify="serviceTimeSection"
                                 placeholder="请选择时间段">
-                           <!-- <option value="0">请选择时间段</option>
-                            <option value="1" disabled>9:00-11:00（已满）</option>
-                            <option value="2">11:00-13:00（剩余1）</option>
-                            <option value="3">13:00-15:00</option>
-                            <option value="4">16:00-18:00</option>-->
                         </select>
+                        <div class="refresh">
+                            <a id="refresh" class="layui-btn layui-btn-danger">刷新</a>
+                        </div>
                     </div>
+
                 </div>
             </div>
         </div>
     </div>
     <hr class="layui-bg-gray"/>
     <div class="layui-center">
-
         <button class="layui-btn layui-btn-sm layui-icon" lay-submit lay-filter="addReservation">立即提交</button>
-
     </div>
     </div>
     </div>
 </form>
 
 <script type="text/javascript" src="../../layui/layui.js"></script>
-<script type="text/javascript" src="reservationAdd.js"></script>
 <script>
     layui.use('laydate', function () {
         var laydate = layui.laydate;
@@ -98,5 +95,6 @@
         });
     })
 </script>
+<script type="text/javascript" src="reservationAdd.js"></script>
 </body>
 </html>
