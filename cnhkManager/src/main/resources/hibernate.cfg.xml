@@ -4,15 +4,13 @@
         "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
     <session-factory>
-        <property name="connection.url">jdbc:mysql://localhost:3306/cnhk</property>
-        <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
         <mapping class="store.cnhk.pojo.Reservation"/>
-        <mapping resource="store/cnhk/pojo/Reservation.hbm.xml"/>
+        <mapping resource="store/cnhk/hibernateMapping/Reservation.hbm.xml"/>
         <mapping class="store.cnhk.pojo.ServiceTimeSection"/>
-        <mapping resource="store/cnhk/pojo/ServiceTimeSection.hbm.xml"/>
-        <mapping resource="store/cnhk/pojo/CnhkProduct.hbm.xml"/>
+        <mapping resource="store/cnhk/hibernateMapping/ServiceTimeSection.hbm.xml"/>
+        <mapping resource="store/cnhk/hibernateMapping/CnhkProduct.hbm.xml"/>
         <mapping class="store.cnhk.pojo.CnhkProduct"/>
-        <mapping resource="store/cnhk/pojo/User.hbm.xml"/>
+        <mapping resource="store/cnhk/hibernateMapping/User.hbm.xml"/>
         <mapping class="store.cnhk.pojo.User"/>
     </session-factory>
 </hibernate-configuration>

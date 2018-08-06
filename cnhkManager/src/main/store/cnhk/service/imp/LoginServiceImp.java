@@ -6,6 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 import store.cnhk.dao.LoginDao;
 import store.cnhk.pojo.User;
 import store.cnhk.service.LoginService;
+import store.cnhk.utils.MD5;
 
 @Service
 public class LoginServiceImp implements LoginService {
@@ -15,6 +16,7 @@ public class LoginServiceImp implements LoginService {
     @Override
     @Transactional
     public User login(String userName, String password) {
-        return loginDao.login(userName, password);
+        String passwordMd5 = MD5.MD5(password);
+        return loginDao.login(userName, passwordMd5);
     }
 }

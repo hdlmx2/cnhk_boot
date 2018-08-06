@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="store.cnhk.pojo.User" table="tb_user" schema="cnhk">
+        <id name="userId" column="userid"/>
+        <property name="userName" column="username"/>
+        <property name="name" column="name"/>
+        <property name="userPassword" column="userpassward"/>
+        <property name="wechatId" column="wechatid"/>
+        <property name="wecharName" column="wecharname"/>
+        <property name="timestamp" column="addtime" update="false" insert="false"/>
+    </class>
+</hibernate-mapping>

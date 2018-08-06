@@ -23,6 +23,11 @@ public class LoginDaoImp implements LoginDao {
         query.setParameter("userName", userName);
         query.setParameter("password", password);
         List<User> user = query.list();
-        return user.get(0);
+        if (user != null && user.size() > 0) {
+            return user.get(0);
+        } else {
+            return null;
+        }
+
     }
 }

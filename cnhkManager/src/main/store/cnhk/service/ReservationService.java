@@ -8,10 +8,15 @@ import java.util.Map;
 
 public interface ReservationService {
     List<Reservation> list(String userName, String phoneNumber, String reservationDate);
+
     Reservation getById(Integer id);
+
     void add(Reservation reservation);
+
     void update(Reservation reservation);
+
     void delete(Reservation reservation);
-    List<Map<String,Object>>reservationServiceTimeSectionCount(Date reservationDate);
+
+    List<Map<String, Object>> reservationServiceTimeSectionCount(Date reservationDate);
 
 }
