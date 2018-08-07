@@ -11,6 +11,6 @@
         <property name="userPassword" column="userpassward"/>
         <property name="wechatId" column="wechatid"/>
         <property name="wecharName" column="wecharname"/>
-        <property name="timestamp" column="addtime" update="false" insert="false"/>
+        <property name="addTime" column="addtime" update="false" insert="false"/>
     </class>
 </hibernate-mapping>

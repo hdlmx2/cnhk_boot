@@ -11,7 +11,7 @@ public class User {
     private String userPassword;
     private String wechatId;
     private String wecharName;
-    private Timestamp timestamp;
+    private Timestamp addTime;
 
 
     public int getUserId() {
@@ -65,12 +65,12 @@ public class User {
     }
 
 
-    public Timestamp getTimestamp() {
-        return timestamp;
+    public Timestamp getAddTime() {
+        return addTime;
     }
 
-    public void setTimestamp(Timestamp timestamp) {
-        this.timestamp = timestamp;
+    public void setAddTime(Timestamp timestamp) {
+        this.addTime = timestamp;
     }
 
     @Override
@@ -83,12 +83,12 @@ public class User {
                 Objects.equals(userPassword, user.userPassword) &&
                 Objects.equals(wechatId, user.wechatId) &&
                 Objects.equals(wecharName, user.wecharName) &&
-                Objects.equals(timestamp, user.timestamp);
+                Objects.equals(addTime, user.addTime);
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(userId, userName, userPassword, wechatId, wecharName, timestamp);
+        return Objects.hash(userId, userName, userPassword, wechatId, wecharName, addTime);
     }
 }

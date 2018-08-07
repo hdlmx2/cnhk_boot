@@ -33,10 +33,10 @@ public class LoginController {
 
     }
 
-    @RequestMapping(value = "logOut", method = RequestMethod.GET)
+    @RequestMapping(value = "/logout", method = RequestMethod.GET)
     public String logOut(HttpServletRequest request) {
         HttpSession session = request.getSession();
         session.setAttribute("userName", null);
-        return "page/login/login.html";
+        return "/page/login/login.html";
     }
 }
