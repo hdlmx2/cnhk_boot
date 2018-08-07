@@ -1646,7 +1646,7 @@ a cite {
 }
 
 .layui-bg-black, .layui-bg-blue, .layui-bg-cyan, .layui-bg-green, .layui-bg-orange, .layui-bg-red {
-    color: #fff !important
+    color: #000 !important
 }
 
 .layui-card-body {
@@ -3307,7 +3307,7 @@ body .layui-table-tips .layui-layer-content {
     position: relative;
     padding: 0 20px;
     background-color: #393D49;
-    color: #fff;
+    color: #000;
     border-radius: 2px;
     font-size: 0;
     box-sizing: border-box
@@ -3351,8 +3351,8 @@ body .layui-table-tips .layui-layer-content {
 }
 
 .layui-nav .layui-nav-item a:hover, .layui-nav .layui-this a {
-    color: #fff
-}
+     color: #e61964
+ }
 
 .layui-nav .layui-this:after {
     content: '';
