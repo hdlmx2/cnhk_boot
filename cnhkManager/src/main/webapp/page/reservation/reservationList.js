@@ -29,8 +29,8 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl'], function () {
             {field: 'id', title: 'ID', width: 60, align: "center"},
             {field: 'userName', title: '姓名', width: 100, align: "center"},
             {field: 'phoneNumber', title: '手机', width: 150, align: "center"},
-            {field: 'reservationDate', title: '预约日期', align: 'center'},
-            {field: 'serviceTimeSection', title: '预约时间段', align: 'center'},
+            {field: 'reservationDate', title: '预约日期', width: 120, align: 'center'},
+            {field: 'serviceTimeSection', title: '预约时间段', width: 120, align: 'center'},
             {field: 'cnhkProduct', title: '服务项目', align: 'center'},
             /*{
                 field: 'isArrivalsStore', title: '是否到店', align: 'center', templet: function (d) {
@@ -39,7 +39,7 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl'], function () {
             },*/
             {
                 field: 'operateTime', title: '操作时间', align: 'center', minWidth: 110, templet: function (d) {
-                    return d.operateTime.substring(0, 10);
+                    return d.operateTime.substring(0, 19);
                 }
             },
             {title: '操作', width: 170, templet: '#newsListBar', fixed: "right", align: "center"}
