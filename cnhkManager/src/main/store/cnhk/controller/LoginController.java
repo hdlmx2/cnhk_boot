@@ -4,11 +4,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import store.cnhk.pojo.User;
 import store.cnhk.service.LoginService;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.HashMap;
+import java.util.Map;
 
 @Controller
 public class LoginController {
@@ -21,14 +24,20 @@ public class LoginController {
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public String login(String userName, String password, HttpServletRequest request) {
+    @ResponseBody
+    public Map<String, Object> login(String userName, String password, HttpServletRequest request) {
         User user = loginService.login(userName, password);
         if (user != null) {
             HttpSession session = request.getSession();
             session.setAttribute("userName", user.getName());
-            return "/index.html";
+            Map<String, Object> result = new HashMap<>();
+            result.put("flag", true);
+            result.put("userId", user.getUserId());
+            return result;
         } else {
-            return "/page/login/login.html";
+            Map<String, Object> result = new HashMap<>();
+            result.put("flag", false);
+            return result;
         }
 
     }

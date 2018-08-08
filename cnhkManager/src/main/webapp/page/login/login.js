@@ -20,12 +20,12 @@ layui.use(['form', 'layer', 'jquery'], function () {
                 "password": $("#password").val()
             },
             success: function (data) {
-                console.log("ss");
+                console.log(data);
             }
         })
         setTimeout(function () {
             window.location.href = "/cnhkManager/index.html";
-        }, 1000);
+        }, 500);
         return false;
     })
 
