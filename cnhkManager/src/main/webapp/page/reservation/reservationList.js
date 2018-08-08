@@ -17,12 +17,12 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl'], function () {
     var tableIns = table.render({
 
         elem: '#newsList',
-        url: '/cnhkManager/reservation',
+        url: '/cnhkManager/reservation?reservationDateCurrent=' + reservationDate,
         cellMinWidth: 95,
         page: true,
         height: "full-125",
         limit: 10,
-        limits: [10],
+        limits: [10, 15, 20],
         id: "newsListTable",
         cols: [[
             {type: "checkbox", fixed: "left", width: 50},

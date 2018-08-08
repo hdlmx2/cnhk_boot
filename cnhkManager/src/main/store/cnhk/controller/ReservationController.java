@@ -31,9 +31,13 @@ public class ReservationController {
             @RequestParam(value = "userName", required = false) String userName,
             @RequestParam(value = "phoneNumber", required = false) String phoneNumber,
             @RequestParam(value = "reservationDate", required = false) String reservationDate,
+            @RequestParam(value = "reservationDateCurrent", required = false) String reservationDateCurrent,
             @RequestParam(value = "limit", required = false) int limit,
             @RequestParam(value = "page", required = false) int page) {
         Page currentPage = new Page(limit, page);
+        if (reservationDate == null) {
+            reservationDate = reservationDateCurrent;
+        }
         List<Reservation> list = reservationService.list(userName, phoneNumber, reservationDate, currentPage);
         Integer pageSize = reservationService.totalPage(userName, phoneNumber, reservationDate);
         Map<String, Object> result = new HashMap<>();
