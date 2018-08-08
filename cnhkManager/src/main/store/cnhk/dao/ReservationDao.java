@@ -1,5 +1,6 @@
 package store.cnhk.dao;
 
+import store.cnhk.bean.Page;
 import store.cnhk.pojo.Reservation;
 
 import java.sql.Date;
@@ -7,7 +8,8 @@ import java.util.List;
 import java.util.Map;
 
 public interface ReservationDao {
-    List<Reservation> list(String userName, String phoneNumber, Date reservationDate);
+    List<Reservation> list(String userName, String phoneNumber, Date reservationDate,Page page);
+    List<Map<String,Object>> totalPage(String userName, String phoneNumber, Date reservationDate);
 
     Reservation getById(Integer id);
 

@@ -7,6 +7,7 @@ import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
+import store.cnhk.bean.Page;
 import store.cnhk.dao.ReservationDao;
 import store.cnhk.pojo.Reservation;
 
@@ -21,9 +22,27 @@ public class ReservationDaoImp implements ReservationDao {
     protected SessionFactory sessionFactory;
 
     @Override
-    public List<Reservation> list(String userName, String phoneNumber, Date reservationDate) {
+    public List<Reservation> list(String userName, String phoneNumber, Date reservationDate, Page page) {
+        Query query = listSql(userName, phoneNumber, reservationDate, 0);
+        List<Reservation> result = query.setFirstResult(page.getStartRow()).setMaxResults(page.getPageSize()).list();
+        return result;
+    }
 
-        StringBuffer hql = new StringBuffer("from Reservation r where 1=1");
+    //查询总页数
+    @Override
+    public List<Map<String, Object>> totalPage(String userName, String phoneNumber, Date reservationDate) {
+        Query query = listSql(userName, phoneNumber, reservationDate, 1);
+        List<Map<String, Object>> reservationCount = query.list();
+        return reservationCount;
+    }
+
+    public Query listSql(String userName, String phoneNumber, Date reservationDate, int type) {
+        StringBuffer hql;
+        if (type == 0) {
+            hql = new StringBuffer("from Reservation r where 1=1");
+        } else {
+            hql = new StringBuffer("select new Map(count(*) as count)from Reservation r where 1=1");
+        }
         if (!StringUtils.isEmpty(userName)) {
             hql.append(" and r.userName like: userName");
         }
@@ -46,8 +65,7 @@ public class ReservationDaoImp implements ReservationDao {
         if (reservationDate != null) {
             query.setParameter("reservationDate", reservationDate);
         }
-        List<Reservation> result = query.list();
-        return result;
+        return query;
     }
 
     @Override

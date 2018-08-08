@@ -45,8 +45,8 @@
 
     <loggers>
         <!--过滤掉spring和mybatis的一些无用的DEBUG信息-->
-        <logger name="org.springframework" level="INFO"/>
-        <logger name="org.hibernate" level="INFO"/>
+        <logger name="org.springframework" level="WARN"/>
+        <logger name="org.hibernate" level="WARN"/>
         <logger name="store.cnhk" level="DEBUG"/>
         <root level="all">
             <appender-ref ref="Console"/>

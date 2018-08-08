@@ -21,8 +21,8 @@ layui.use(['form', 'layer', 'laydate', 'table', 'laytpl'], function () {
         cellMinWidth: 95,
         page: true,
         height: "full-125",
-        limit: 20,
-        limits: [10, 15, 20, 25],
+        limit: 10,
+        limits: [10],
         id: "newsListTable",
         cols: [[
             {type: "checkbox", fixed: "left", width: 50},

@@ -5,6 +5,7 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import store.cnhk.bean.Page;
 import store.cnhk.pojo.CnhkProduct;
 import store.cnhk.pojo.Reservation;
 import store.cnhk.pojo.ServiceTimeSection;
@@ -26,16 +27,22 @@ public class ReservationController {
 
     @RequestMapping("/reservation")
     @ResponseBody
-    public Map<String, Object> list(@RequestParam(value = "userName", required = false) String userName, @RequestParam(value = "phoneNumber", required = false
-    ) String phoneNumber, @RequestParam(value = "reservationDate", required = false) String reservationDateString) {
-        List<Reservation> list = reservationService.list(userName, phoneNumber, reservationDateString);
+    public Map<String, Object> list(
+            @RequestParam(value = "userName", required = false) String userName,
+            @RequestParam(value = "phoneNumber", required = false) String phoneNumber,
+            @RequestParam(value = "reservationDate", required = false) String reservationDate,
+            @RequestParam(value = "limit", required = false) int limit,
+            @RequestParam(value = "page", required = false) int page) {
+        Page currentPage = new Page(limit, page);
+        List<Reservation> list = reservationService.list(userName, phoneNumber, reservationDate, currentPage);
+        Integer pageSize = reservationService.totalPage(userName, phoneNumber, reservationDate);
         Map<String, Object> result = new HashMap<>();
         List<Map<String, Object>> reservations = new LinkedList<>();
-        int i = 1;
+        int id = currentPage.getStartRow() + 1;
         for (Reservation reservation : list) {
             Map<String, Object> temp = new HashMap<>();
             temp.put("rid", reservation.getId());
-            temp.put("id", i);
+            temp.put("id", id);
             temp.put("userName", reservation.getUserName());
             temp.put("phoneNumber", reservation.getPhoneNumber());
             temp.put("reservationDate", reservation.getReservationDate().toString());
@@ -46,22 +53,23 @@ public class ReservationController {
             temp.put("isArrivalsStore", reservation.getIsArrivalsStore());
             temp.put("operateTime", reservation.getOperateTime().toString());
             reservations.add(temp);
-            i++;
+            id++;
         }
         result.put("code", "0");
         result.put("msg", "");
-        result.put("count", list.size());
+        result.put("count", pageSize);
         result.put("data", reservations);
         return result;
     }
 
     @RequestMapping(value = "reservationAdd", method = {RequestMethod.POST})
     @ResponseBody
-    public Map<String, Boolean> add(@RequestParam("userName") String userName,
-                                    @RequestParam("phoneNumber") String phoneNumber,
-                                    @RequestParam("cnhkProductId") String cnhkProductId,
-                                    @RequestParam("serviceTimeSectionId") String serviceTimeSectionId,
-                                    @RequestParam("reservationDate") String reservationDateString) {
+    public Map<String, Boolean> add(
+            @RequestParam("userName") String userName,
+            @RequestParam("phoneNumber") String phoneNumber,
+            @RequestParam("cnhkProductId") String cnhkProductId,
+            @RequestParam("serviceTimeSectionId") String serviceTimeSectionId,
+            @RequestParam("reservationDate") String reservationDateString) {
         Reservation reservation = new Reservation();
         ServiceTimeSection serviceTimeSection = new ServiceTimeSection();
         serviceTimeSection.setId(Integer.parseInt(serviceTimeSectionId));
@@ -86,13 +94,23 @@ public class ReservationController {
 
     }
 
+    @RequestMapping(value = "/reservationCurrentCount")
+    @ResponseBody
+    public Map<String, Object> reservationCurrentCount(String reservationDate) {
+        Integer count = reservationService.totalPage(null, null, reservationDate);
+        Map<String, Object> result = new HashMap<>();
+        result.put("count", count);
+        return result;
+    }
+
     @RequestMapping("reservationUpdate")
     @ResponseBody
-    public Map<String, Boolean> update(int id, String userName,
-                                       String phoneNumber,
-                                       Date reservationDate,
-                                       String cnhkProductId,
-                                       int serviceTimeSectionId) {
+    public Map<String, Boolean> update(
+            int id, String userName,
+            String phoneNumber,
+            Date reservationDate,
+            String cnhkProductId,
+            int serviceTimeSectionId) {
         Reservation reservation = new Reservation();
         ServiceTimeSection serviceTimeSection = new ServiceTimeSection();
         serviceTimeSection.setId(serviceTimeSectionId);

@@ -20,12 +20,18 @@ layui.use(['form', 'layer', 'jquery'], function () {
                 "password": $("#password").val()
             },
             success: function (data) {
-                console.log(data);
+                if (data.flag == true) {
+                    setTimeout(function () {
+                        window.location.href = "/cnhkManager";
+                    }, 500);
+                } else {
+                    $("#login").text("登录").removeAttr("disabled").removeClass("layui-disabled");
+                    top.layer.msg("账号或者密码错误！");
+                }
+
             }
         })
-        setTimeout(function () {
-            window.location.href = "/cnhkManager/index.html";
-        }, 500);
+
         return false;
     })
 

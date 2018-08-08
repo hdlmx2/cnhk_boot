@@ -3,6 +3,7 @@ package store.cnhk.service.imp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import store.cnhk.bean.Page;
 import store.cnhk.dao.ReservationDao;
 import store.cnhk.pojo.Reservation;
 import store.cnhk.pojo.ServiceTimeSection;
@@ -23,9 +24,17 @@ public class ReservationServiceImp implements ReservationService {
 
     @Override
     @Transactional
-    public List<Reservation> list(String userName, String phoneNumber, String reservationDateString) {
+    public List<Reservation> list(String userName, String phoneNumber, String reservationDateString, Page page) {
         Date reservationDate = DateUtils.strToDate(reservationDateString);
-        return reservationDao.list(userName, phoneNumber, reservationDate);
+        return reservationDao.list(userName, phoneNumber, reservationDate, page);
+    }
+
+    @Override
+    @Transactional
+    public Integer totalPage(String userName, String phoneNumber, String reservationDateString) {
+        Date reservationDate = DateUtils.strToDate(reservationDateString);
+        List<Map<String, Object>> result = reservationDao.totalPage(userName, phoneNumber, reservationDate);
+        return Integer.parseInt(result.get(0).get("count").toString());
     }
 
     @Override
