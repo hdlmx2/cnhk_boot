@@ -603,15 +603,15 @@ hr {
     height: 100%;
 }
 
-.divForm form.layui-form {
+form.layui-form {
     padding: 0 20px;
-    width: 400px;
-    height: 300px;
+    width: 60%;
+    height: 100%;
     /* position: absolute;*/
     /* left: 45%;
      top: 50%;*/
     /*margin: -100px 0 0 -150px;*/
-    margin-top: 80px;
+    margin-top: 50px;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     -o-box-sizing: border-box;
